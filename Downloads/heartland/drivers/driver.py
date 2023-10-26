@@ -1,5 +1,6 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
 
 
 class Driver:
@@ -7,6 +8,11 @@ class Driver:
 
     @staticmethod
     def get_webdriver():
-        service_obj = Service("/Users/edwardaguilar/documents/chromedriver")
-        driver = webdriver.Chrome(service=service_obj)
+        """
+         Create the driver instance
+         :return:
+         """
+        service = ChromeService(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service)
+
         return driver
