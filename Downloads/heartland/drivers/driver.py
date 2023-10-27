@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 
 
 class Driver:
-    "Driver Class"
+    """Driver Class"""
 
     @staticmethod
     def get_webdriver():
