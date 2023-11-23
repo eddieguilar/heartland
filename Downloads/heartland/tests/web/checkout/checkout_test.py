@@ -24,5 +24,4 @@ def test_place_order():
     checkout_page.fill_out_customer_information(driver)
     payment.place_order(driver)
     success_page.is_order_placed_successfully(driver)
-
     driver.quit()
