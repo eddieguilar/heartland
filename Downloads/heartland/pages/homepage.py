@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
 
 
 class HomePage:
@@ -15,6 +16,10 @@ class HomePage:
     _move_to_women_jackets = (By.XPATH, "//a[@id='ui-id-11']//span[contains(text(),'Jackets')]")
     _click_women_jackets = (By.XPATH, "//a[@id='ui-id-11']//span[contains(text(),'Jackets')]")
     _click_yoga_jacket = (By.XPATH, "//a[contains(text(), 'Jade Yoga Jacket')]")
+    _search_box = (By.ID, "search")
+    _tanks_for_women = (By.XPATH, "//span[normalize-space()='tanks for women']")
+    _search_results = (By.XPATH, "//span[contains(text(), 'tanks for women')]")
+    _category = (By.XPATH, "//div[@class='filter-options-content']")
 
     def move_to_womens_category(self):
         """hovers to women's category"""
@@ -45,8 +50,42 @@ class HomePage:
         self.driver.find_element(*self._click_yoga_jacket).click()
         return self
 
+    def go_to_search_box_field(self, text_input):
+        """go to search box field"""
+        self.driver.find_element(*self._search_box).send_keys(text_input)
+        return self
 
-    #original code
+    def select_dropdown_option_from_search_box(self):
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(self._tanks_for_women))
+        action = ActionChains(self.driver)
+        dropdown = self.driver.find_element(*self._tanks_for_women)
+        action.move_to_element(dropdown).perform()
+        dropdown.click()
+        return self
+
+    def search_results_text(self):
+        """gets text from search results"""
+        return self.driver.find_element(*self._search_results).text
+
+    def select_filter_options(self):
+        elements = self.driver.find_elements(*self._category)
+        for i in elements:
+            text_of_elements = i.text()
+            print(text_of_elements)
+
+
+
+    # def select_filter_options(self, value):
+    #     """clicks style category dropdown"""
+    #     elements = self.driver.find_elements(*self._category).text()
+    #     for e in elements:
+    #         print(e.text)
+    #         if e.text == value:
+    #             e.click()
+    #     return self
+
+
+    # original code
     # def move_to_womens_tops(self, driver):
     #     action = ActionChains(driver)
     #

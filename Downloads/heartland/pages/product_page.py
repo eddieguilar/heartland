@@ -11,7 +11,7 @@ class ProductPage:
         self.driver = driver
 
     _select_a_size = (By.XPATH, "//div[@option-label='XS']")
-    _select_a_color = (By.XPATH, "//div[@option-label='Blue']")
+    _select_a_color = (By.XPATH, "//div[@option-label='Blue']")  # set up f string
     _clear_field = (By.XPATH, "//input[@id='qty']")
     _add_quantity = (By.XPATH, "//input[@id='qty']")
     _add_to_cart_button = (By.XPATH, "//span[normalize-space()='Add to Cart']")
@@ -24,7 +24,7 @@ class ProductPage:
         self.driver.find_element(*self._select_a_size).click()
         return self
 
-    def select_a_color(self):
+    def select_a_color(self, color):
         self.driver.find_element(*self._select_a_color).click()
         return self
 

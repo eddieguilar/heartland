@@ -9,9 +9,9 @@ class ProductModule(ProductPage):
     def __init__(self, driver):
         super().__init__(driver)
 
-    def complete_adding_item_to_cart(self, qty='10'):
+    def complete_adding_item_to_cart(self, qty='10', color='Blue'):
         self.select_size_option() \
-            .select_a_color() \
+            .select_a_color(color) \
             .clear_field() \
             .add_quantities(qty) \
             .click_add_to_cart_button() \

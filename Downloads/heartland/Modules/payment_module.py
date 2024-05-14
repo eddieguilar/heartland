@@ -16,3 +16,5 @@ class PaymentModule(PaymentPage):
         self.click_place_order_button()
         return self
 
+    def verify_order_amount_is_displayed(self, amount):
+        return self.get_order_total_amount(amount)
